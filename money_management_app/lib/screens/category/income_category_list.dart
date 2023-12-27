@@ -7,7 +7,15 @@ class IncomeCategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
         itemBuilder: (ctx, index) {
-          return Text('Income Category $index');
+          return Card(
+            child: ListTile(
+              title: Text('Income Category $index'),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.delete),
+              ),
+            ),
+          );
         },
         separatorBuilder: (ctx, index) {
           return const SizedBox(
