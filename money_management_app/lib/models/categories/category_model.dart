@@ -33,6 +33,6 @@ class CategoryModel {
 
   @override
   String toString() {
-    return '$name $type';
+    return '{$name $type}';
   }
 }
