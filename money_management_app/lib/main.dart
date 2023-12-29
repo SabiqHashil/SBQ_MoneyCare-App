@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // MaterialApp widget representing the overall structure of the application
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // Title of the application
       title: 'Flutter Demo',
       // Theme configuration for the application
