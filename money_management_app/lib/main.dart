@@ -1,6 +1,7 @@
 // Importing necessary packages from the Flutter and Hive libraries
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:money_management_app/screens/add_transaction/screen_add_transaction.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:money_management_app/models/categories/category_model.dart';
 import 'package:money_management_app/screens/home/screen_home.dart';
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
       ),
       // Setting the home screen to be ScreenHome widget
       home: const ScreenHome(),
+      routes: {
+        ScreenaddTransaction.routeName: (ctx) => const ScreenaddTransaction(),
+      },
     );
   }
 }
