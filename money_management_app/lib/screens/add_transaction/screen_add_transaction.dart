@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_management_app/db/category/category_db.dart';
+import 'package:money_management_app/models/transaction/transaction_model.dart';
 import 'package:money_management_app/models/categories/category_model.dart';
 
 class ScreenaddTransaction extends StatefulWidget {
@@ -16,6 +17,9 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
   CategoryModel? _selectedCategoryModel;
 
   String? _categoryID;
+
+  final _purposeTextEditingController = TextEditingController();
+  final _amountTextEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -41,6 +45,7 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
             children: [
               // purpose
               TextFormField(
+                controller: _purposeTextEditingController,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   hintText: 'Purpose',
@@ -48,6 +53,7 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
               ),
               // amount
               TextFormField(
+                controller: _amountTextEditingController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   hintText: 'Amount',
@@ -154,13 +160,53 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
               ),
               // Submit
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  addTransactioin();
+                },
                 child: Text('Submit'),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> addTransactioin() async {
+    final _purposeText = _purposeTextEditingController.text;
+    final _amountText = _amountTextEditingController.text;
+
+    if (_purposeText.isEmpty) {
+      return;
+    }
+    if (_amountText.isEmpty) {
+      return;
+    }
+    if (_categoryID == null) {
+      return;
+    }
+    if (_selectedDate == null) {
+      return;
+    }
+
+    if (_selectedCategoryModel == null) {
+      return;
+    }
+
+    final _parsedAmount = double.tryParse(_amountText);
+    if (_parsedAmount == null) {
+      return;
+    }
+    // _selectedDate
+    // _selectedCategorytype
+    // _categoryID
+
+    final _model = TransactionModel(
+      purpose: _purposeText,
+      amount: _parsedAmount,
+      date: _selectedDate!,
+      type: _selectedCategorytype!,
+      category: _selectedCategoryModel!,
     );
   }
 }
