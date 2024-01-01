@@ -15,6 +15,14 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
   CategoryType? _selectedCategorytype;
   CategoryModel? _selectedCategoryModel;
 
+  String? _categoryID;
+
+  @override
+  void initState() {
+    _selectedCategorytype = CategoryType.income;
+    super.initState();
+  }
+
   /*
     Purpose
     Date
@@ -46,7 +54,9 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                 ),
               ),
               // calender
-
+              SizedBox(
+                height: 10,
+              ),
               TextButton.icon(
                 onPressed: () async {
                   final _selectedDateTemp = await showDatePicker(
@@ -71,7 +81,9 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                     ? 'Select Date'
                     : _selectedDate!.toString()),
               ),
-
+              SizedBox(
+                height: 10,
+              ),
               // category
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,9 +91,14 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                   Row(
                     children: [
                       Radio(
-                        value: CategoryType.expense,
-                        groupValue: CategoryType.income,
-                        onChanged: (newValue) {},
+                        value: CategoryType.income,
+                        groupValue: _selectedCategorytype,
+                        onChanged: (newValue) {
+                          setState(() {
+                            _selectedCategorytype = CategoryType.income;
+                            _categoryID = null;
+                          });
+                        },
                       ),
                       Text("Income"),
                     ],
@@ -90,26 +107,50 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                     children: [
                       Radio(
                         value: CategoryType.expense,
-                        groupValue: CategoryType.expense,
-                        onChanged: (newValue) {},
+                        groupValue: _selectedCategorytype,
+                        onChanged: (newValue) {
+                          setState(() {
+                            _selectedCategorytype = CategoryType.expense;
+                            _categoryID = null;
+                          });
+                        },
                       ),
                       Text("Expense"),
                     ],
                   ),
                 ],
               ),
-              // category type
-              DropdownButton(
+              SizedBox(
+                height: 10,
+              ),
+              // Category type
+              DropdownButton<String>(
                 hint: const Text('Select Category'),
-                items: CategoryDB().expenseCategoryListListener.value.map((e) {
+                value: _categoryID,
+                items: (_selectedCategorytype == CategoryType.income
+                        ? CategoryDB().incomeCategoryListListener
+                        : CategoryDB().expenseCategoryListListener)
+                    .value
+                    .map((e) {
                   return DropdownMenuItem(
                     value: e.id,
                     child: Text(e.name),
+                    onTap: () {
+                      print(e.toString());
+                      _selectedCategoryModel = e;
+                    },
                   );
                 }).toList(),
                 onChanged: (selectedValue) {
                   print(selectedValue);
+                  setState(() {
+                    _categoryID = selectedValue;
+                  });
                 },
+                onTap: () {},
+              ),
+              SizedBox(
+                height: 30,
               ),
               // Submit
               ElevatedButton(
