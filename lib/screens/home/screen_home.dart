@@ -18,11 +18,11 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.teal[50],
       appBar: AppBar(
-        title: Text('SBQ Money Manager'),
+        title: Text('Money Care'),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue[300],
       ),
       bottomNavigationBar: const MoneyManagerBottommNavigation(),
       body: SafeArea(

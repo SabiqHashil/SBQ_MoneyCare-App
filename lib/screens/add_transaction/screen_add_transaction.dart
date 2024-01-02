@@ -38,12 +38,18 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: Text('Add Transaction'),
+      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: 50,
+              ),
               // purpose
               TextFormField(
                 controller: _purposeTextEditingController,
@@ -51,6 +57,9 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                 decoration: const InputDecoration(
                   hintText: 'Purpose',
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               // amount
               TextFormField(
@@ -61,8 +70,8 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                 ),
               ),
               // calender
-              SizedBox(
-                height: 10,
+              const SizedBox(
+                height: 25,
               ),
               TextButton.icon(
                 onPressed: () async {
@@ -88,7 +97,7 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                     ? 'Select Date'
                     : _selectedDate!.toString()),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               // category
@@ -127,44 +136,57 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               // Category type
-              DropdownButton<String>(
-                hint: const Text('Select Category'),
-                value: _categoryID,
-                items: (_selectedCategorytype == CategoryType.income
-                        ? CategoryDB().incomeCategoryListListener
-                        : CategoryDB().expenseCategoryListListener)
-                    .value
-                    .map((e) {
-                  return DropdownMenuItem(
-                    value: e.id,
-                    child: Text(e.name),
-                    onTap: () {
-                      print(e.toString());
-                      _selectedCategoryModel = e;
-                    },
-                  );
-                }).toList(),
-                onChanged: (selectedValue) {
-                  print(selectedValue);
-                  setState(() {
-                    _categoryID = selectedValue;
-                  });
-                },
-                onTap: () {},
+              Center(
+                child: DropdownButton<String>(
+                  hint: const Text('Select Category'),
+                  value: _categoryID,
+                  items: (_selectedCategorytype == CategoryType.income
+                          ? CategoryDB().incomeCategoryListListener
+                          : CategoryDB().expenseCategoryListListener)
+                      .value
+                      .map((e) {
+                    return DropdownMenuItem(
+                      value: e.id,
+                      child: Text(e.name),
+                      onTap: () {
+                        print(e.toString());
+                        _selectedCategoryModel = e;
+                      },
+                    );
+                  }).toList(),
+                  onChanged: (selectedValue) {
+                    print(selectedValue);
+                    setState(() {
+                      _categoryID = selectedValue;
+                    });
+                  },
+                  onTap: () {},
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               // Submit
-              ElevatedButton(
-                onPressed: () {
-                  addTransactioin();
-                },
-                child: Text('Submit'),
+              Center(
+                child: OutlinedButton(
+                  onPressed: () {
+                    addTransactioin();
+                  },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.elliptical(15, 25)),
+                    ),
+                  ),
+                  child: Text(
+                    'SUBMIT',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               ),
             ],
           ),

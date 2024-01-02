@@ -31,6 +31,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
           controller: _tabController,
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey,
+          indicatorColor: Colors.blue,
           tabs: [
             Tab(
               text: 'INCOME',

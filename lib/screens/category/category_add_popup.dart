@@ -35,7 +35,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
+            child: OutlinedButton(
               onPressed: () {
                 final _name = _nameEditingController.text;
                 if (_name.isEmpty) {
@@ -50,7 +50,16 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                 CategoryDB.instance.insertCategory(_category);
                 Navigator.of(ctx).pop();
               },
-              child: const Text('Add'),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.elliptical(15, 25)),
+                ),
+              ),
+              child: const Text(
+                'ADD',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ],

@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // Title of the application
-      title: 'Flutter Demo',
+      title: 'Money Care',
       // Theme configuration for the application
       theme: ThemeData(
         // Defining the color scheme using deep purple as a seed color
