@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:money_management_app/screens/add_transaction/screen_add_transaction.dart';
 import 'package:money_management_app/screens/category/category_add_popup.dart';
 import 'package:money_management_app/screens/category/screen_category.dart';
@@ -20,7 +21,14 @@ class ScreenHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.teal[50],
       appBar: AppBar(
-        title: Text('Money Care'),
+        title: Text(
+          'Money Care',
+          style: GoogleFonts.lato(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blue[300],
       ),
