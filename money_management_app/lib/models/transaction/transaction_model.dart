@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:money_management_app/models/categories/category_model.dart';
 part 'transaction_model.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 3)
 class TransactionModel {
   @HiveField(0)
   final String purpose;

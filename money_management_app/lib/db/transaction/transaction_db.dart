@@ -8,9 +8,17 @@ abstract class TransactionDbFunctions {
 }
 
 class TransactionDB implements TransactionDbFunctions {
+  TransactionDB._internal();
+
+  static TransactionDB instance = TransactionDB._internal();
+
+  factory TransactionDB() {
+    return instance;
+  }
+
   @override
   Future<void> addTransactioin(TransactionModel obj) async {
-    final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
-    await _db.put(obj.id, obj);
+    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    await db.put(obj.id, obj);
   }
 }

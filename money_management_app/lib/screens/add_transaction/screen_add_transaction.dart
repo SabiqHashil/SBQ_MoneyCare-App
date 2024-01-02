@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_management_app/db/category/category_db.dart';
+import 'package:money_management_app/db/transaction/transaction_db.dart';
 import 'package:money_management_app/models/transaction/transaction_model.dart';
 import 'package:money_management_app/models/categories/category_model.dart';
 
@@ -208,5 +209,7 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
       type: _selectedCategorytype!,
       category: _selectedCategoryModel!,
     );
+
+    TransactionDB.instance.addTransactioin(_model);
   }
 }
