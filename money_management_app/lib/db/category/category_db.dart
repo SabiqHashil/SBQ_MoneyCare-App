@@ -15,10 +15,13 @@ abstract class CategoryDbFunctions {
 
 // Class implementing category database functions
 class CategoryDB implements CategoryDbFunctions {
+  // Private constructor for the singleton pattern
   CategoryDB._internal();
 
+  // Singleton instance of the CategoryDB
   static CategoryDB instance = CategoryDB._internal();
 
+  // Factory constructor to provide the singleton instance
   factory CategoryDB() {
     return instance;
   }
@@ -76,6 +79,7 @@ class CategoryDB implements CategoryDbFunctions {
     expenseCategoryListListener.notifyListeners();
   }
 
+  // Function to delete a category from the database
   @override
   Future<void> deleteCategory(String categoryID) async {
     final _categoryDB = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);

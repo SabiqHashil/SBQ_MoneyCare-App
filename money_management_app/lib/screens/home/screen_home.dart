@@ -22,6 +22,7 @@ class ScreenHome extends StatelessWidget {
       appBar: AppBar(
         title: Text('SBQ Money Manager'),
         centerTitle: true,
+        backgroundColor: Colors.blue,
       ),
       bottomNavigationBar: const MoneyManagerBottommNavigation(),
       body: SafeArea(
