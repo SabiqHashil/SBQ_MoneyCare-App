@@ -37,6 +37,7 @@ class ExpenseCategoryList extends StatelessWidget {
                     CategoryDB.instance.deleteCategory(category.id);
                   },
                   icon: const Icon(Icons.delete),
+                  color: Colors.red,
                 ),
               ),
             );
