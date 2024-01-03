@@ -23,7 +23,7 @@ class ScreenHome extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Money Care',
-          style: GoogleFonts.lato(
+          style: GoogleFonts.robotoFlex(
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 30,

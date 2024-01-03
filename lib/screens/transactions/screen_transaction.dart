@@ -35,6 +35,8 @@ class ScreenTransaction extends StatelessWidget {
                     TransactionDB.instance.deleteTransaction(_values.id!);
                   },
                   icon: Icons.delete,
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.red,
                   label: 'Delete',
                 ),
               ]),
