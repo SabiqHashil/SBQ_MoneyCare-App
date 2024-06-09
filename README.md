@@ -1,4 +1,4 @@
-# money_management_app
+# SBQ Money Care App
 
 A new Flutter project.
 
